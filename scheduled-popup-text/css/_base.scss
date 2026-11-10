@@ -1,0 +1,649 @@
+@charset "UTF-8";
+
+$size: xxl, xl, lg, md, sm, xs;
+$mediaWidth: (
+    xxl: 1599px,
+    xl: 1399px,
+    lg: 1199px,
+    md: 991px,
+    sm: 767px,
+    xs: 359px,
+);
+
+@mixin maxWidth-xxl() {
+    @media screen and (max-width: map-get($mediaWidth, xxl)) {
+        @content;
+    }
+}
+@mixin maxWidth-xl() {
+    @media screen and (max-width: map-get($mediaWidth, xl)) {
+        @content;
+    }
+}
+@mixin maxWidth-lg() {
+    @media screen and (max-width: map-get($mediaWidth, lg)) {
+        @content;
+    }
+}
+@mixin maxWidth-md() {
+    @media screen and (max-width: map-get($mediaWidth, md)) {
+        @content;
+    }
+}
+@mixin maxWidth-sm() {
+    @media screen and (max-width: map-get($mediaWidth, sm)) {
+        @content;
+    }
+}
+@mixin maxWidth-xs() {
+    @media screen and (max-width: map-get($mediaWidth, xs)) {
+        @content;
+    }
+}
+
+/* 用法範例
+    @include maxWidth-xxl {
+        margin: 20px;
+    }
+*/
+
+// reset ========================================================================
+html {
+    scroll-behavior: smooth;
+}
+body {
+    padding: 0px;
+    margin: 0px;
+    font-family: Arial, 'Noto Serif SC', 'Noto Sans TC', sans-serif;
+    // font-family: Arial, "Microsoft JhengHei", "Helvetica Neue", Helvetica, sans-serif;
+    color: #3a3a3a;
+    font-size: 18px;
+    line-height: 1.75;
+    -webkit-overflow-scrolling: touch;
+    -webkit-text-size-adjust: 100%;         /*強制瀏覽器不要縮放文字*/
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    @include maxWidth-md {
+        font-size: 16px;
+    }
+}
+
+/*控制文字選取時的顏色*/
+::selection {
+	background:#4bb847;
+	color:#000;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    outline: none;
+    border: none;
+}
+
+p {
+    margin: 15px 0px;
+}
+
+// 中文項次
+$chineseNo: "一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二", "十三", "十四", "十五", "十六", "十七", "十八", "十九", "二十";
+
+ul,
+ol {
+    margin: 15px 0px;
+    padding-left: 20px;
+    li {
+        padding-bottom: 3px;
+        &:last-of-type {
+            padding-bottom: 0px;
+        }
+        ul,
+        ol {
+            margin: 3px 0px 0px;
+        }
+    }
+    &.chineseListStyle {
+        // 例：(一)
+        list-style: none;
+        padding-left: 40px;
+        & > li {
+            position: relative;
+            &:before {
+                content: "";
+                position: absolute;
+                top: 0px;
+                left: -40px;
+            }
+            @for $chineseNo_n from 1 through length($chineseNo) {
+                &:nth-of-type(#{$chineseNo_n}) {
+                    &:before {
+                        @if $chineseNo_n > 10 {
+                            font-size: 14px;
+                            top: 1px;
+                            left: -42px;
+                        }
+                        content: "(" + nth($chineseNo, $chineseNo_n) + ")";
+                    }
+                }
+            }
+        }
+    }
+    &.chineseListStyle2 {
+        // 例：一、
+        list-style: none;
+        padding-left: 40px;
+        & > li {
+            position: relative;
+            &:before {
+                content: "";
+                position: absolute;
+                top: 0px;
+                left: -40px;
+            }
+            @for $chineseNo_n from 1 through length($chineseNo) {
+                &:nth-of-type(#{$chineseNo_n}) {
+                    &:before {
+                        @if $chineseNo_n > 10 {
+                            font-size: 14px;
+                            top: 1px;
+                            left: -42px;
+                        }
+                        content: nth($chineseNo, $chineseNo_n) + "、";
+                    }
+                }
+            }
+        }
+    }
+    &.lowercaseStyle {
+        // 例：a
+        list-style-type: lower-alpha;
+    }
+    &.figuresInBracketsStyle {
+        // 例：(1)
+        list-style: none;
+        padding-left: 30px;
+        & > li {
+            position: relative;
+            &:before {
+                content: "";
+                position: absolute;
+                top: 0px;
+                left: -30px;
+            }
+            @for $i from 1 through 9 {
+                &:nth-of-type(#{$i}) {
+                    &:before {
+                        content: "(" + $i + ")";
+                    }
+                }
+            }
+            @for $i from 10 through 99 {
+                &:nth-of-type(#{$i}) {
+                    &:before {
+                        letter-spacing: -1.7px;
+                        content: "(" + $i + ")";
+                    }
+                }
+            }
+        }
+    }
+    &.circleNumbersStyle {
+        // 圓圈數字
+        list-style: none;
+        padding-left: 30px;
+        & > li {
+            position: relative;
+            &:before {
+                content: "";
+                position: absolute;
+                top: 3px;
+                left: -30px;
+                width: 22px;
+                line-height: 20px;
+                border-radius: 100%;
+                border: solid 1px;
+                font-size: 15px;
+                letter-spacing: -0.8px;
+                text-align: center;
+                box-sizing: border-box;
+            }
+            @for $i from 1 through 9 {
+                &:nth-of-type(#{$i}) {
+                    &:before {
+                        content: "#{$i}";
+                    }
+                }
+            }
+        }
+    }
+    &.arabicNumeralsStyle {
+        // 例：(1)
+        list-style: none;
+        padding-left: 40px;
+        & > li {
+            position: relative;
+            &:before {
+                content: "";
+                position: absolute;
+                top: 0px;
+                left: -40px;
+            }
+            @for $n from 1 through 20 {
+                &:nth-of-type(#{$n}) {
+                    &:before {
+                        content: "(" + $n + ")";
+                    }
+                }
+            }
+        }
+    }
+}
+
+p, ul, ol {
+    & + .tit-type1 {
+        margin-top: 60px;
+    }
+    & + .tit-type2 {
+        margin-top: 50px;
+    }
+    & + .tit-type3 {
+        margin-top: 40px;
+    }
+}
+
+// input ========================================================================
+.checkbox,
+.radio {
+    // vertical-align: middle;
+    // display: inline-block;
+    margin-right: 15px;
+    padding: 5px 0;
+    &-area {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+    input[type="checkbox"],
+    input[type="radio"] {
+        display: none;
+        &:checked + .fake {
+            background: #fae103;
+            border-color: #d3be01;
+            i {
+                color: #000;
+            }
+        }
+    }
+    label {
+        display: flex;
+        justify-content: flex-start;
+        align-items: top;
+    }
+    .fake {
+        flex-shrink: 0;
+        display: block;
+        width: 20px;
+        height: 20px;
+        box-sizing: border-box;
+        border: solid 2px #a4a4a4;
+        background: #fff;
+        border-radius: 100%;
+        transition: 0.3s ease all;
+        position: relative;
+        top: 4px;
+        i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            color: #fff;
+            font-size: 13px;
+            transition: 0.3s ease all;
+        }
+    }
+    &-text {
+        // display: inline-block;
+        // vertical-align: middle;
+        font-size: 17px;
+        padding-left: 5px;
+    }
+    @include maxWidth-sm {
+        &-text {
+            font-size: 16px;
+        }
+    }
+}
+
+.checkbox .fake {
+    border-radius: 0;
+}
+
+label {
+    cursor: pointer;
+}
+
+button {
+    border: none;
+    color: #fff;
+    transition: 0.3s ease all;
+    border-radius: 5px;
+    cursor: pointer;
+    i {
+        margin-left: 5px;
+    }
+}
+
+input,
+button {
+    outline: none;
+    font-family: Arial, "Microsoft JhengHei" ,  "Helvetica Neue", Helvetica, sans-serif;
+}
+
+input,
+button,
+select {
+    outline: none;
+    font-family: Arial, "Microsoft JhengHei", "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.inputStyle {
+    // border-radius: 10px;
+    border: solid 2px #818181;
+    // border: none;
+    background: #fff;
+    font-size: 17px;
+    box-sizing: border-box;
+    padding: 13px 10px;
+    width: 100%;
+    @include maxWidth-sm {
+        padding: 11px 10px 10px;
+    }
+}
+
+input {
+    &[type="text"],
+    &[type="password"],
+    &[type="tel"],
+    &[type="search"],
+    &[type="number"],
+    &[type="email"] {
+        @extend .inputStyle;
+    }
+}
+
+select {
+    box-sizing: border-box;
+    padding: 0 24px 0 10px;
+    font-size: 17px;
+    line-height: 50px;
+    height: 54px;
+    width: 100%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    background: #fff url(../images/icon-dropdown.png) right center no-repeat;
+    background-size: 18px;
+    border-radius: 10px;
+    border: solid 2px #818181;
+    &::-ms-expand {
+        display: none;
+    }
+}
+
+// component ========================================================================
+.container {
+    margin: 0 auto;
+    padding: 0px;
+    max-width: 1200px;
+    @include maxWidth-xl {
+        margin: 0px 65px;
+    }
+    @include maxWidth-lg {
+        
+        max-width: none;
+    }
+    @include maxWidth-md {
+        margin: 0px 25px;
+    }
+    @include maxWidth-sm {
+        margin: 0px 10px;
+    }
+}
+
+.clearfix {
+    &:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+}
+
+.hide {
+    display: none !important;
+}
+
+.mobileShow {
+    display: none !important;
+}
+@include maxWidth-md {
+    .pcShow {
+        display: none !important;
+    }
+    .mobileShow {
+        display: initial !important;
+    }
+}
+
+//--material icon ========================================================================
+.material-symbols-outlined {
+    transform: translateY(5px);
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
+}
+.material-symbols-fill {
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
+}
+
+//--解決animate.css引起的z-index問題 ========================================================================
+.animated {
+    animation-fill-mode: backwards;
+}
+
+//--分隔線 ========================================================================
+.dividingLine {
+    margin: 40px 0px;
+    border-bottom: dashed 1px #bbb;
+    clear: both;
+    font-size: 0;
+    &.dotType {
+        text-align: center;
+        border-bottom: none;
+        &:before {
+            content: '';
+            display: inline-block;
+            border-radius: 100%;
+            width: 9px;
+            height: 9px;
+            background: #000;
+            box-shadow: 40px 0 0 #000,
+                        80px 0 0 #000,
+                        -40px 0 0 #000,
+                        -80px 0 0 #000;
+        }
+        &.tinyType {
+            margin: 28px 0;
+            &:before {
+                width: 6px;
+                height: 6px;
+            }
+        }
+    }
+}
+
+// youtube ==================================================
+.youtube {
+    width: 100%;
+    max-width: 600px;
+    max-width: 750px;
+    margin: 0 auto;
+    position: relative;
+    &-content {
+        position: relative;
+        padding-bottom: 56.25%;
+        // padding-top: 30px;
+        height: 0;
+        overflow: hidden;
+        img {
+            width: 100%;
+            position: absolute;
+            display: block;
+        }
+        i {
+            color: #fff;
+            font-size: 75px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            text-shadow: 0 0 21px #000;
+            cursor: pointer;
+        }
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    @include maxWidth-md {
+        max-width: 600px;
+    }
+}
+
+// slick ==================================================
+.slick {
+    &-slider {
+        padding-bottom: 25px;
+        touch-action: auto !important;
+    }
+    &-slide {
+        outline: none;
+        a {
+            outline: none;
+        }
+        img {
+            max-width: 100%;
+        }
+    }
+    &-dots {
+        list-style: none;
+        font-size: 0px;
+        text-align: center;
+        margin: 0px;
+        padding-left: 0px;
+        width: 100%;
+        position: absolute;
+        bottom: 0px;
+        left: 0;
+        li {
+            padding: 0px 7px;
+            display: inline-block;
+            vertical-align: top;
+            button {
+                font-size: 0px;
+                padding: 0px;
+                border-radius: 50px;
+                width: 13px;
+                height: 13px;
+                background: #a5a5a5;
+            }
+            &.slick-active button {
+                background: #005598;
+                width: 25px;
+            }
+        }
+    }
+    &-arrow {
+        font-size: 0px;
+        position: absolute;
+        // top: 50%;
+        // transform: translateY(-50%);
+        top: -3px;
+        padding: 0px;
+        border-radius: 100%;
+        width: 42px;
+        height: 42px;
+        text-align: center;
+        color: #000;
+        transition: 0.3s ease all;
+        z-index: 1;
+        background: none;
+        font-family: 'Material Symbols Outlined';
+        &:before {
+            font-size: 42px;
+            line-height: 1;
+            background: #fff;
+            border-radius: 100%;
+        }
+        &:hover {
+            color: #007eff;
+        }
+    }
+    &-prev {
+        left: -35px;
+        &:before {
+
+            content: "";
+            display: block;
+            width: 40px;
+            height: 40px;
+            background: url("../images/icon-arrow-left.svg") center / contain no-repeat;
+        }
+    }
+    &-next {
+        right: -35px;
+        &:before {
+            content: "";
+            display: block;
+            width: 40px;
+            height: 40px;
+            background: url("../images/icon-arrow-right.svg") center / contain no-repeat;
+        }
+    }
+    @include maxWidth-md {
+        &-prev {
+            left: -20px;
+        }
+        &-next {
+            right: -20px;
+        }
+    }
+    @include maxWidth-sm {
+        &-arrow {
+            top: -48px;
+            width: 26px;
+            height: 26px;
+            &:before {
+                font-size: 26px;
+            }
+        }
+        &-prev {
+            left: -10px;
+        }
+        &-next {
+            right: -10px;
+        }
+    }
+}

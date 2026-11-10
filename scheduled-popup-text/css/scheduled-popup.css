@@ -1,0 +1,142 @@
+.campaign-popup[hidden] {
+  display: none;
+}
+
+.campaign-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 24px;
+  background: rgba(3, 32, 59, .62);
+}
+
+.popup-bg {
+  position: absolute;
+  inset: 0;
+  background: transparent;
+}
+
+.popup-box {
+  position: relative;
+  z-index: 1;
+  width: min(520px, 100%);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 44px 44px;
+  border: 0;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 18px 50px rgba(3, 61, 105, .13);
+  color: #3b3b3b;
+  text-align: center;
+}
+
+.popup-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #0068b7;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.popup-close:hover,
+.popup-close:focus-visible {
+  background: #004f91;
+}
+
+.popup-title {
+  margin: 0 0 18px;
+  color: #005bac;
+  font-size: 34px;
+  line-height: 1.4;
+}
+
+.popup-text {
+  margin: 0;
+  color: #3b3b3b;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.popup-name,
+.popup-offer {
+  display: block;
+}
+
+.popup-offer {
+  font-size: 34px;
+  font-weight: 500;
+}
+
+.popup-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 220px;
+  box-sizing: border-box;
+  margin-top: 26px;
+  padding: 13px 28px;
+  border-radius: 999px;
+  background-image: linear-gradient(to right, #0877b9 0%, #35b9ed 51%, #0877b9 100%);
+  background-position: left center;
+  background-size: 200% auto;
+  color: #fff;
+  font-size: 19px;
+  text-decoration: none;
+  transition: background-position .5s;
+}
+
+.popup-btn:hover,
+.popup-btn:focus-visible {
+  background-position: right center;
+}
+
+.popup-deadline {
+  margin: 12px 0 0;
+  color: #4a4a4a;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+body.campaign-popup-open {
+  overflow: hidden;
+}
+
+@media (max-width: 600px) {
+  .campaign-popup {
+    padding: 26px;
+  }
+
+  .popup-box {
+    padding: 64px 28px 40px;
+    border-radius: 24px;
+  }
+
+  .popup-close {
+    top: 20px;
+    right: 20px;
+  }
+}
