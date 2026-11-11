@@ -131,11 +131,22 @@
       });
 
       function funPopMessage() {
+        var modal = document.getElementById('myModal');
 
-        document.getElementById('myModal').style.display = 'flex';
+        if (window.location.hash && window.history.replaceState) {
+          window.history.replaceState(null, document.title, window.location.pathname + window.location.search);
+        }
+
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+        modal.style.display = 'flex';
         document.documentElement.classList.add('modal-open');
         document.body.classList.add('modal-open');
-        txtID.focus();
+
+        window.requestAnimationFrame(function () {
+          var closeButton = modal.querySelector('.closeBtn');
+          if (closeButton) closeButton.focus({ preventScroll: true });
+        });
+
         return false;
 
       }
@@ -202,6 +213,11 @@
           checkbox.focus();
           return false;
         }
+
+        if (window.location.hash && window.history.replaceState) {
+          window.history.replaceState(null, document.title, window.location.pathname + window.location.search);
+        }
+
         return true; // 通過驗證
       }
 
