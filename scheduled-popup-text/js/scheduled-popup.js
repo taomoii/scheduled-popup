@@ -7,21 +7,23 @@
     {
       id: 'countdown-2026',
       start: '2026-11-11T00:00:00+08:00',
-      end: '2026-11-11T14:40:00+08:00',
+      end: '2026-11-20T00:00:00+08:00',
       title: '最後倒數！',
       campaignName: '享投資選凱基',
-      offer: '$500元 蝦皮全站優惠券',
+      offerAmount: '$500元',
+      offerName: '蝦皮全站優惠券',
       actionText: '立即登錄',
       actionHref: '#gifts',
       deadline: '2026/12/31 23:50止'
     },
     {
       id: 'newyear-2027',
-      start: '2027-11-11T14:40:00+08:00',
-      end: '2026-04-01T00:00:00+08:00',
+      start: '2026-11-20T00:00:00+08:00',
+      end: '2027-12-12T00:00:00+08:00',
       title: '新年快樂！',
       campaignName: '享投資選凱基',
-      offer: '$300元 超商禮券',
+      offerAmount: '$300元',
+      offerName: '超商禮券',
       actionText: '立即登錄',
       actionHref: 'https://event.kgi.com.tw/news/event/rewards/index.aspx#gifts',
       deadline: '2027/03/31 23:50止'
@@ -34,7 +36,8 @@
   var dialog = popup.querySelector('.popup-box');
   var title = popup.querySelector('.popup-title');
   var campaignName = popup.querySelector('.popup-name');
-  var offer = popup.querySelector('.popup-offer');
+  var offerAmount = popup.querySelector('.popup-amount');
+  var offerName = popup.querySelector('.popup-gift');
   var action = popup.querySelector('.popup-btn');
   var deadline = popup.querySelector('.popup-deadline');
   var closeButtons = popup.querySelectorAll('[data-scheduled-popup-close]');
@@ -108,7 +111,8 @@
     popup.setAttribute('data-campaign-id', campaign.id);
     title.textContent = campaign.title;
     campaignName.textContent = campaign.campaignName;
-    offer.textContent = campaign.offer;
+    offerAmount.textContent = campaign.offerAmount;
+    offerName.textContent = campaign.offerName;
     action.textContent = campaign.actionText;
     action.setAttribute('href', campaign.actionHref);
     deadline.textContent = campaign.deadline;
