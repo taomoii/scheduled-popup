@@ -121,8 +121,11 @@
   line-height: 1.5;
 }
 
+html.campaign-popup-open,
 body.campaign-popup-open {
-  overflow: hidden;
+  overflow: hidden !important;
+  overscroll-behavior: none;
+  touch-action: none;
 }
 
 @media (max-width: 600px) {
