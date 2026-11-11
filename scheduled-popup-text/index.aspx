@@ -4,6 +4,23 @@
   <html lang="zh-Hant-TW">
 
   <head>
+    <!-- 系統 alert 優先：當次載入若出現 alert，排程 Popup 不得顯示 -->
+    <script>
+      (function () {
+        var nativeAlert = window.alert;
+
+        window.alert = function (message) {
+          window.__systemAlertShown = true;
+
+          if (typeof window.closeScheduledCampaignPopup === 'function') {
+            window.closeScheduledCampaignPopup(false);
+          }
+
+          return nativeAlert.call(window, message);
+        };
+      })();
+    </script>
+
     <!-- 載入公司共用追蹤碼 -->
     <script>
       let cacheID = new Date().getMilliseconds();
@@ -1021,7 +1038,7 @@
         }
       </script>
       <!-- 排程活動 Popup：獨立 JS，不依賴既有 myModal -->
-      <script src="js/scheduled-popup.js?v=20261111b"></script>
+      <script src="js/scheduled-popup.js?v=20261111c"></script>
       <script src="js/main.js?v=20261020"></script>
       <script src="../event_setting/rewards_2026Q4/checkdate.js"></script>
     </form>
