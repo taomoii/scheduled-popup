@@ -1680,6 +1680,13 @@ h3 {
   background: #004f91;
 }
 
+html.modal-open,
+body.modal-open {
+  overflow: hidden !important;
+  overscroll-behavior: none;
+  touch-action: none;
+}
+
 @media(max-width:900px) {
   .section {
     padding: 76px 0
