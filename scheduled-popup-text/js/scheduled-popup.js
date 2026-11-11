@@ -45,13 +45,16 @@
     return successModal && window.getComputedStyle(successModal).display !== 'none';
   }
 
-  function hasDuplicateRegistrationAlert() {
+  function hasBlockingRegistrationAlert() {
     var pageSource = document.documentElement.innerHTML;
-    return /此身分證[^<\r\n]{0,40}完成登錄/.test(pageSource);
+    var alreadyRegistered = /此身分證[^<\r\n]{0,40}完成登錄/.test(pageSource);
+    var registeredInAnotherCampaign = /您已登錄活動期間內的[^<\r\n]{0,80}活動[^<\r\n]{0,40}無法重複登錄本活動/.test(pageSource);
+
+    return alreadyRegistered || registeredInAnotherCampaign;
   }
 
   function shouldBlockCampaignPopup() {
-    return window.__systemAlertShown || hasDuplicateRegistrationAlert() || isSuccessModalOpen();
+    return window.__systemAlertShown || hasBlockingRegistrationAlert() || isSuccessModalOpen();
   }
 
   function getActiveCampaign(now) {
