@@ -45,6 +45,15 @@
     return successModal && window.getComputedStyle(successModal).display !== 'none';
   }
 
+  function hasDuplicateRegistrationAlert() {
+    var pageSource = document.documentElement.innerHTML;
+    return /此身分證[^<\r\n]{0,40}完成登錄/.test(pageSource);
+  }
+
+  function shouldBlockCampaignPopup() {
+    return window.__systemAlertShown || hasDuplicateRegistrationAlert() || isSuccessModalOpen();
+  }
+
   function getActiveCampaign(now) {
     var currentTime = now.getTime();
 
@@ -90,7 +99,7 @@
   }
 
   function openScheduledPopup(campaign) {
-    if (window.__systemAlertShown || isSuccessModalOpen()) return;
+    if (shouldBlockCampaignPopup()) return;
 
     previousActiveElement = document.activeElement;
     popup.setAttribute('data-campaign-id', campaign.id);
@@ -142,7 +151,7 @@
     if (previewCampaign) activeCampaign = previewCampaign;
   }
 
-  if (activeCampaign && !window.__systemAlertShown && !isSuccessModalOpen()) {
+  if (activeCampaign && !shouldBlockCampaignPopup()) {
     openScheduledPopup(activeCampaign);
   }
 
