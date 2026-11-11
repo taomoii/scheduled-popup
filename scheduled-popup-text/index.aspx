@@ -83,11 +83,11 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="https://event.kgi.com.tw/news/event/commonResources/css/slick.css">
-    <link rel="stylesheet" href="css/style.css?v=20261001v3">
+    <link rel="stylesheet" href="css/style.css?v=20261111a">
     <!--客服-->
     <link rel="stylesheet" href="https://event.kgi.com.tw/news/event/commonResources/css/chatbot.css?v=20261001">
     <!-- 排程活動 Popup：獨立樣式，請維持載入於共用 chatbot.css 之後 -->
-    <link rel="stylesheet" href="css/scheduled-popup.css?v=20261110h">
+    <link rel="stylesheet" href="css/scheduled-popup.css?v=20261111a">
     <script src="https://event.kgi.com.tw/news/event/commonResources/js/chatbot.js?v=20261001"></script>
 
     <script src="https://event.kgi.com.tw/news/event/commonResources/js/vue-v3.js"></script>
@@ -116,6 +116,8 @@
       function funPopMessage() {
 
         document.getElementById('myModal').style.display = 'flex';
+        document.documentElement.classList.add('modal-open');
+        document.body.classList.add('modal-open');
         txtID.focus();
         return false;
 
@@ -125,6 +127,8 @@
       function funCloseMessage() {
 
         document.getElementById('myModal').style.display = 'none';
+        document.documentElement.classList.remove('modal-open');
+        document.body.classList.remove('modal-open');
         return false;
 
       }
@@ -1017,7 +1021,7 @@
         }
       </script>
       <!-- 排程活動 Popup：獨立 JS，不依賴既有 myModal -->
-      <script src="js/scheduled-popup.js?v=20261111a"></script>
+      <script src="js/scheduled-popup.js?v=20261111b"></script>
       <script src="js/main.js?v=20261020"></script>
       <script src="../event_setting/rewards_2026Q4/checkdate.js"></script>
     </form>
