@@ -57,6 +57,7 @@
 
   function closeScheduledPopup(restoreFocus) {
     popup.hidden = true;
+    document.documentElement.classList.remove('campaign-popup-open');
     document.body.classList.remove('campaign-popup-open');
     document.removeEventListener('keydown', handleKeydown);
 
@@ -100,6 +101,7 @@
     action.setAttribute('href', campaign.actionHref);
     deadline.textContent = campaign.deadline;
     popup.hidden = false;
+    document.documentElement.classList.add('campaign-popup-open');
     document.body.classList.add('campaign-popup-open');
     document.addEventListener('keydown', handleKeydown);
 
