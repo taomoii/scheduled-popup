@@ -86,6 +86,8 @@
     <link rel="stylesheet" href="css/style.css?v=20261001v3">
     <!--客服-->
     <link rel="stylesheet" href="https://event.kgi.com.tw/news/event/commonResources/css/chatbot.css?v=20261001">
+    <!-- 排程活動 Popup：獨立樣式，請維持載入於共用 chatbot.css 之後 -->
+    <link rel="stylesheet" href="css/scheduled-popup.css?v=20261110h">
     <script src="https://event.kgi.com.tw/news/event/commonResources/js/chatbot.js?v=20261001"></script>
 
     <script src="https://event.kgi.com.tw/news/event/commonResources/js/vue-v3.js"></script>
@@ -926,6 +928,28 @@
           </a>
         </div>
 
+        <!-- =============================== Popup 時間排程 獨立功能區 =============================== -->
+        <div class="campaign-popup" id="scheduledCampaignPopup" hidden>
+          <div class="popup-bg" data-scheduled-popup-close></div>
+          <section class="popup-box" role="dialog" aria-modal="true" aria-labelledby="scheduledCampaignPopupTitle"
+            aria-describedby="scheduledCampaignPopupDescription">
+            <button class="popup-close" type="button" aria-label="關閉活動訊息" data-scheduled-popup-close>
+              <span aria-hidden="true">×</span>
+            </button>
+            <h2 class="popup-title" id="scheduledCampaignPopupTitle"></h2>
+            <p class="popup-text" id="scheduledCampaignPopupDescription">
+              <span class="popup-name"></span>
+              <strong class="popup-offer"></strong>
+            </p>
+            <a class="popup-btn" href="https://event.kgi.com.tw/news/event/rewards/index.aspx#gifts"
+              id="scheduledCampaignPopupAction">
+              立即登錄
+            </a>
+            <p class="popup-deadline"></p>
+          </section>
+        </div>
+        <!-- 排程活動 Popup 結束 -->
+
         <div class="modal" id="myModal" style="display:none">
           <div class="modal-container" id="modalContainer" role="dialog" aria-modal="true"
             aria-labelledby="ticket-title">
@@ -992,6 +1016,8 @@
 
         }
       </script>
+      <!-- 排程活動 Popup：獨立 JS，不依賴既有 myModal -->
+      <script src="js/scheduled-popup.js?v=20261111a"></script>
       <script src="js/main.js?v=20261020"></script>
       <script src="../event_setting/rewards_2026Q4/checkdate.js"></script>
     </form>
