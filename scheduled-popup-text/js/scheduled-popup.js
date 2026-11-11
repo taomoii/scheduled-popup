@@ -90,7 +90,7 @@
   }
 
   function openScheduledPopup(campaign) {
-    if (isSuccessModalOpen()) return;
+    if (window.__systemAlertShown || isSuccessModalOpen()) return;
 
     previousActiveElement = document.activeElement;
     popup.setAttribute('data-campaign-id', campaign.id);
@@ -142,7 +142,9 @@
     if (previewCampaign) activeCampaign = previewCampaign;
   }
 
-  if (activeCampaign && !isSuccessModalOpen()) openScheduledPopup(activeCampaign);
+  if (activeCampaign && !window.__systemAlertShown && !isSuccessModalOpen()) {
+    openScheduledPopup(activeCampaign);
+  }
 
   /* 測試用：Console 輸入 showScheduledCampaignPopup('countdown-2026') 或 showScheduledCampaignPopup('newyear-2027') */
   window.showScheduledCampaignPopup = function (campaignId) {
