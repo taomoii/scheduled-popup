@@ -3,15 +3,6 @@
 
   function initScheduledCampaignPopup() {
 
-  /* ========================================================
-     排程活動 Popup 設定
-
-     規則：
-     1. 目前時間落在 start（含）與 end（不含）之間時，自動顯示。
-     2. 未落在任何區間時，不顯示 Popup。
-     3. 時間包含 +08:00，固定以台灣時間設定，避免使用者裝置時區不同。
-     4. 新增活動時，複製一組物件並修改時間與文字即可。
-  ======================================================== */
   var scheduledCampaigns = [
     {
       id: 'countdown-2026',
@@ -47,7 +38,12 @@
   var action = popup.querySelector('.popup-btn');
   var deadline = popup.querySelector('.popup-deadline');
   var closeButtons = popup.querySelectorAll('[data-scheduled-popup-close]');
+  var successModal = document.getElementById('myModal');
   var previousActiveElement = null;
+
+  function isSuccessModalOpen() {
+    return successModal && window.getComputedStyle(successModal).display !== 'none';
+  }
 
   function getActiveCampaign(now) {
     var currentTime = now.getTime();
@@ -59,12 +55,12 @@
     });
   }
 
-  function closeScheduledPopup() {
+  function closeScheduledPopup(restoreFocus) {
     popup.hidden = true;
     document.body.classList.remove('campaign-popup-open');
     document.removeEventListener('keydown', handleKeydown);
 
-    if (previousActiveElement && typeof previousActiveElement.focus === 'function') {
+    if (restoreFocus !== false && previousActiveElement && typeof previousActiveElement.focus === 'function') {
       previousActiveElement.focus();
     }
   }
@@ -93,6 +89,8 @@
   }
 
   function openScheduledPopup(campaign) {
+    if (isSuccessModalOpen()) return;
+
     previousActiveElement = document.activeElement;
     popup.setAttribute('data-campaign-id', campaign.id);
     title.textContent = campaign.title;
@@ -117,6 +115,19 @@
 
   action.addEventListener('click', closeScheduledPopup);
 
+  if (successModal) {
+    var successModalObserver = new MutationObserver(function () {
+      if (isSuccessModalOpen() && !popup.hidden) {
+        closeScheduledPopup(false);
+      }
+    });
+
+    successModalObserver.observe(successModal, {
+      attributes: true,
+      attributeFilter: ['style', 'class']
+    });
+  }
+
   var activeCampaign = getActiveCampaign(new Date());
 
   /* 本機預覽：index_test.html?popupPreview=countdown-2026 */
@@ -129,7 +140,7 @@
     if (previewCampaign) activeCampaign = previewCampaign;
   }
 
-  if (activeCampaign) openScheduledPopup(activeCampaign);
+  if (activeCampaign && !isSuccessModalOpen()) openScheduledPopup(activeCampaign);
 
   /* 測試用：Console 輸入 showScheduledCampaignPopup('countdown-2026') 或 showScheduledCampaignPopup('newyear-2027') */
   window.showScheduledCampaignPopup = function (campaignId) {
