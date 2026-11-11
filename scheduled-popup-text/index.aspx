@@ -104,7 +104,7 @@
     <!--客服-->
     <link rel="stylesheet" href="https://event.kgi.com.tw/news/event/commonResources/css/chatbot.css?v=20261001">
     <!-- 排程活動 Popup：獨立樣式，請維持載入於共用 chatbot.css 之後 -->
-    <link rel="stylesheet" href="css/scheduled-popup.css?v=20261111d">
+    <link rel="stylesheet" href="css/scheduled-popup.css?v=20261111e">
     <script src="https://event.kgi.com.tw/news/event/commonResources/js/chatbot.js?v=20261001"></script>
 
     <script src="https://event.kgi.com.tw/news/event/commonResources/js/vue-v3.js"></script>
@@ -1054,7 +1054,7 @@
         }
       </script>
       <!-- 排程活動 Popup：獨立 JS，不依賴既有 myModal -->
-      <script src="js/scheduled-popup.js?v=20261111d"></script>
+      <script src="js/scheduled-popup.js?v=20261111e"></script>
       <script src="js/main.js?v=20261020"></script>
       <script src="../event_setting/rewards_2026Q4/checkdate.js"></script>
     </form>
