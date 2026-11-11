@@ -12,7 +12,7 @@
       campaignName: '享投資選凱基',
       offer: '$500元 蝦皮全站優惠券',
       actionText: '立即登錄',
-      actionHref: 'https://event.kgi.com.tw/news/event/rewards/index.aspx#gifts',
+      actionHref: '#gifts',
       deadline: '2026/12/31 23:50止'
     },
     {
