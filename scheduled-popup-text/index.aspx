@@ -985,7 +985,7 @@
             <p class="popup-deadline"></p>
           </section>
         </div>
-        <!-- 排程活動 Popup 結束 -->
+        <!-- 時間排程 Popup 結束 -->
 
         <div class="modal" id="myModal" style="display:none">
           <div class="modal-container" id="modalContainer" role="dialog" aria-modal="true"
@@ -1053,8 +1053,7 @@
 
         }
       </script>
-      <!-- 排程活動 Popup：獨立 JS，不依賴既有 myModal -->
-      <script src="js/scheduled-popup.js?v=20261111f"></script>
+      <script src="js/scheduled-popup.js?v=20261111g"></script>
       <script src="js/main.js?v=20261020"></script>
       <script src="../event_setting/rewards_2026Q4/checkdate.js"></script>
     </form>
