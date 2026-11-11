@@ -58,10 +58,14 @@
   transition: background .2s, transform .15s;
 }
 
-.popup-close:hover,
-.popup-close:focus-visible {
+.popup-close:hover {
   background: #004f91;
   transform: rotate(90deg);
+}
+
+.popup-close:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
 }
 
 .popup-close .material-symbols-outlined {
@@ -99,6 +103,15 @@
 .popup-offer {
   font-size: 34px;
   font-weight: 500;
+}
+
+.popup-amount,
+.popup-gift {
+  display: inline;
+}
+
+.popup-gift {
+  margin-left: .2em;
 }
 
 .popup-btn {
@@ -152,5 +165,20 @@ body.campaign-popup-open {
   .popup-close {
     top: 20px;
     right: 20px;
+  }
+
+  .popup-amount,
+  .popup-gift {
+    display: block;
+  }
+
+  .popup-amount {
+    font-size: 50px;
+    font-weight: 700;
+  }
+
+  .popup-gift {
+    margin-left: 0;
+    font-size: 26px;
   }
 }
