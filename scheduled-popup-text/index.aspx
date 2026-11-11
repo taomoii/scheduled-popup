@@ -104,7 +104,7 @@
     <!--客服-->
     <link rel="stylesheet" href="https://event.kgi.com.tw/news/event/commonResources/css/chatbot.css?v=20261001">
     <!-- 排程活動 Popup：獨立樣式，請維持載入於共用 chatbot.css 之後 -->
-    <link rel="stylesheet" href="css/scheduled-popup.css?v=20261111a">
+    <link rel="stylesheet" href="css/scheduled-popup.css?v=20261111d">
     <script src="https://event.kgi.com.tw/news/event/commonResources/js/chatbot.js?v=20261001"></script>
 
     <script src="https://event.kgi.com.tw/news/event/commonResources/js/vue-v3.js"></script>
@@ -971,7 +971,7 @@
           <section class="popup-box" role="dialog" aria-modal="true" aria-labelledby="scheduledCampaignPopupTitle"
             aria-describedby="scheduledCampaignPopupDescription">
             <button class="popup-close" type="button" aria-label="關閉活動訊息" data-scheduled-popup-close>
-              <span aria-hidden="true">×</span>
+              <span class="material-symbols-outlined" aria-hidden="true">close</span>
             </button>
             <h2 class="popup-title" id="scheduledCampaignPopupTitle"></h2>
             <p class="popup-text" id="scheduledCampaignPopupDescription">
