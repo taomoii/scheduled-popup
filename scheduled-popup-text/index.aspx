@@ -1054,7 +1054,7 @@
         }
       </script>
       <!-- 排程活動 Popup：獨立 JS，不依賴既有 myModal -->
-      <script src="js/scheduled-popup.js?v=20261111e"></script>
+      <script src="js/scheduled-popup.js?v=20261111f"></script>
       <script src="js/main.js?v=20261020"></script>
       <script src="../event_setting/rewards_2026Q4/checkdate.js"></script>
     </form>
